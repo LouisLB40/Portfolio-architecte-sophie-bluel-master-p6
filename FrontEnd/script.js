@@ -30,33 +30,31 @@ fetch(API_BASE_URL + "categories")
     .then(response => response.json())
     .then(data => {
         displayButtons(data);
-        console.log(data);
+        
     })
     .catch((error) => console.log(error));
 
 const displayButtons = (categories) => {
 
-    const btn_wrap = document.querySelector('.button_filter');
-    btn_wrap.innerHTML = '';
+    const btn_filter = document.querySelector('.button_filter');
+    btn_filter.innerHTML = '';
 
     const btn_all = document.createElement('button')
     btn_all.textContent = 'Tous'
     btn_all.classList.add('button_text')
     btn_all.setAttribute("data-id", 0)
 
-    btn_wrap.appendChild(btn_all);
+    btn_filter.appendChild(btn_all);
 
     categories.forEach((category) => {
 
         const button = document.createElement('button')
         button.innerHTML = category.name;
         button.setAttribute("data-id", category.id);
-        console.log(category.id)
+        
         button.classList.add('button_text')
 
-        console.log(category);
-
-        btn_wrap.appendChild(button);
+        btn_filter.appendChild(button);
 
     });
 
