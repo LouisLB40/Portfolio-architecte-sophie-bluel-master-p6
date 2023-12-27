@@ -25,7 +25,6 @@ function displayWorks (works) {
     });
 }
 
-
 fetch(API_BASE_URL + "categories")
     .then(response => response.json())
     .then(data => {
@@ -41,6 +40,7 @@ const displayButtons = (categories) => {
 
     const btn_all = document.createElement('button')
     btn_all.textContent = 'Tous'
+    btn_all.classList.add('active')
     btn_all.classList.add('button_text')
     btn_all.setAttribute("data-id", 0)
 
@@ -61,13 +61,17 @@ const displayButtons = (categories) => {
     let buttons = document.querySelectorAll("button[data-id]");
 
     buttons.forEach((button) => {
-
+        
         button.addEventListener('click', (event) => {
-
+            const AllBtn = document.querySelectorAll('.button_text');
+            AllBtn.forEach((button) => {
+                button.classList.remove('active');
+            })
             const button = event.target;
+            button.classList.add('active')
             const categoryId = parseInt(button.dataset.id);
             console.log(categoryId);
-            
+            // pas faire un fetch ici 
         fetch(API_BASE_URL + "works")
             .then((response) => response.json())
             .then((works) => {
