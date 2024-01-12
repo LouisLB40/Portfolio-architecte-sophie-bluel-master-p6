@@ -12,25 +12,21 @@
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="https://kit.fontawesome.com/b577f9b5d7.js" crossorigin="anonymous"></script>
 </head>
-<body>
-	<div class="adminbar adminMode">
-			<i class="fa-regular fa-pen-to-square"></i>
-			<p>Mode édition</p>
-		</div>
-	<header>
+<body class="body">
+	<header class="header">
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
-			<ul>
-				<li>projets</li>
+			<ul class="ul_btn">
+				<li class="btn_login">projets</li>
 				<li>contact</li>
 				<li><a class="ul_btn" href="login.html">login</a></li>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+				<li><img class="instagram_logo" src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
 	</header>
 	<main>
 		<section id="introduction">
-			<figure>
+			<figure id="figure_intro">
 				<img src="./assets/images/sophie-bluel.png" alt="">
 			</figure>
 			<article>
@@ -40,10 +36,15 @@
 				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 			</article>
 		</section>
+		<aside id="modale" class="modale" aria-hidden="true" role="dialog" aria-labelledby="titleModale" style="display: none;">
+			<div class="first_modale">
+				<button class="fas fa-xmark"></button>
+				<h1 id="titleModale" class="titleModale">Galerie Photo</h1>
+				<div class="imagesModale"></div>
+			</div>
+		</aside>
 		<section id="portfolio">
-			<div class="myProject"><h2>Mes Projets</h2>
-			<div class="adminMode"><i class="fa-regular fa-pen-to-square"></i>
-			<p class="">modifier</p></div></div>
+			<h2>Mes Projets</h2>
 			<div class="button_filter">
 				<button class="button_text">Tous</button>
 				<button class="button_text">Objets</button>
