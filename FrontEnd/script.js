@@ -125,7 +125,6 @@ if (token) {
 
     const divEdit1 = document.createElement('div');
     divEdit1.setAttribute('class', 'divEdit1');
-    // figureImg.appendChild(divEdit1);
 
     const editIcon2 = () => {
         const editI = document.createElement('i');
@@ -182,9 +181,8 @@ if (token) {
         aside.removeAttribute('aria-hidden');
         aside.setAttribute('aria-modale', 'true');
         modale = aside;
-        modale.addEventListener('click', close);
-        modale.querySelector('.fa-xmark').addEventListener('click', close);
-        modale.querySelector('.first_modale').addEventListener('click', stop);
+        // modale.addEventListener('click', closeModale);
+        // modale.querySelector('.fa-xmark').addEventListener('click', closeModale);
 
         if (!isDataFetched) {
             fetch('http://localhost:5678/api/works', {
@@ -215,9 +213,29 @@ if (token) {
                 img.src = work.imageUrl;
                 img.id = work.id;
 
+                const buttonTrash = document.createElement('button');
+                buttonTrash.classList.add('buttonTrash');
+                buttonTrash.setAttribute('data-id', work.id);
+                const iconTrash = document.createElement('span');
+                iconTrash.classList.add('fa-solid', 'fa-trash-can');
+                iconTrash.classList.add('fa-trash-can');
+
+                buttonTrash.appendChild(iconTrash);
+
                 container.append(img);
                 divImages.append(container);
+                container.append(buttonTrash);
+
             });
         }
-    });   
+    });
+    
+    const lineGrey = document.createElement('div');
+    lineGrey.setAttribute('class', 'lineGrey');
+    modale1.appendChild(lineGrey);
+
+    const addButton = document.createElement('button');
+    addButton.setAttribute('class', 'addButton');
+    addButton.innerText = 'Ajouter une photo';
+    modale1.appendChild(addButton);
 }
