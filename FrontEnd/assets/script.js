@@ -1,7 +1,6 @@
 let works = [];
-const divGallery = document.querySelector(".gallery");
-const btnAll = document.querySelector(".btn-tous");
 
+//works//
 fetch("http://localhost:5678/api/works/")
   .then(function(response) {
     return response.json();
@@ -17,7 +16,7 @@ fetch("http://localhost:5678/api/works/")
   .catch(function(error) {
     console.error(error);
   });
-
+//categories//
   async function getCategories() {
     try {
       const response = await fetch('http://localhost:5678/api/categories');
@@ -26,7 +25,7 @@ fetch("http://localhost:5678/api/works/")
       return console.error(error);
     }
   }
-
+//filtres//
 async function createFilterButtons(categories) {
   const btnContainer = document.querySelector(".btn-container");
   try {
@@ -53,12 +52,14 @@ async function createFilterButtons(categories) {
     console.error(error);
   }
 }
+//btn tous//
+const btnAll = document.querySelector(".btn-tous");
 
 btnAll.addEventListener("click", function() {
   createGallery(works);
   activeButton(btnAll);
 }); 
-
+//active//
 function activeButton(active) {
   const buttons = document.querySelectorAll(".btn");
   buttons.forEach(function(btn) {
@@ -66,6 +67,8 @@ function activeButton(active) {
   });
   active.classList.add("active");
 }
+//gallery//
+const divGallery = document.querySelector(".gallery");
 
 function createGallery(works) {
   divGallery.innerHTML = "";
@@ -85,7 +88,7 @@ function createGallery(works) {
     divGallery.appendChild(figureElement);
   });
 }
-
+//edit mode//
 const LoginIn = document.querySelector(".login-in");
 
 function editorMode(){  
@@ -164,7 +167,7 @@ function resetModal() {
     }
   },500);
 }
-
+//gallery dans modale//
 const modalGalleryShow = document.querySelector('#modal-gallery');
 const modalElements = document.querySelectorAll('.modale');
 
@@ -204,7 +207,7 @@ function galleryInModal(modalElements, modalGalleryShow) {
 };
 
 galleryInModal(modalElements, modalGalleryShow);
-
+//supp toute la gallery//
 const deleteGalleryBtn = document.querySelector(".del-gallery");
 
 deleteGalleryBtn.addEventListener("click", function() {
@@ -230,7 +233,7 @@ async function deleteGallery() {
   modalGalleryShow.innerHTML="";
   works =[]; 
 }
-
+// maj after supp//
 function deleteImage(imageId) {
   fetch(`http://localhost:5678/api/works/${imageId}`, {
     method: 'DELETE',
@@ -250,7 +253,7 @@ function deleteImage(imageId) {
     console.error(`Erreur lors de la suppression de l'image ${imageId} de l'API :`, error);
   });
 }
-
+// ajout gallery//
 const addPhotoBtn = document.querySelector(".modal-button");
 const backArrow  = document.querySelector('.arrow-left');
 const modalWrapper = document.querySelector(".modal-wrapper");
@@ -261,12 +264,12 @@ addPhotoBtn.addEventListener("click", function() {
   modalAddGallery.style.display = "block";  
   resetFormAndImage();
 });
-
+//retour modale//
 backArrow.addEventListener("click", function() {  
   modalWrapper.style.display = "flex";
   modalAddGallery.style.display = "none"; 
 });
-
+// ajout travaux//
 const modalGalleryButton = document.querySelector(".modal-gallery-button");
 const uploadPhotoButton = document.querySelector("#upload-photo");
 const addGallery = document.querySelector(".add-gallery");
@@ -297,7 +300,7 @@ function resetFormAndImage() {
   validateButton.style.backgroundColor = "";
   
 }
-
+// chercher les categories dynamiquement//
 function createNewInputImage() {
   getCategories().then(function(categories) {
   categoryForm.innerHTML = '<option value="null">Veuillez choisir une catégorie</option>';
