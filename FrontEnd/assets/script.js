@@ -8,7 +8,7 @@ fetch("http://localhost:5678/api/works/")
   .then(async function(data) {
     works = data;
     createGallery(works);
-    var categories = Array.from(new Set(works.map(function(work) {
+    const categories = Array.from(new Set(works.map(function(work) {
         return work.categoryId;
     })));
     await createFilterButtons(categories);
@@ -289,8 +289,8 @@ function resetFormAndImage() {
   titleForm.value = "";
   categoryForm.value = "null";
   
-  var images = addGallery.querySelectorAll("img");
-  for (var i = 0; i < images.length; i++) {
+  const images = addGallery.querySelectorAll("img");
+  for (let i = 0; i < images.length; i++) {
     images[i].remove();
   }
   addGallery.querySelector("p").style.display = "block";
@@ -298,7 +298,6 @@ function resetFormAndImage() {
   trashIconResetForm.style.display = "none";
   errorMessage.style.display = "none";    
   validateButton.style.backgroundColor = "";
-  
 }
 // chercher les categories dynamiquement//
 function createNewInputImage() {
@@ -345,13 +344,14 @@ modalGalleryButton.addEventListener("click", function() {
 
 [titleForm, categoryForm, inputImage].forEach(function(field) {
   field.addEventListener("input", function() {      
-    var fieldsCompleted = false;
+    let fieldsCompleted = false;
     if (titleForm.value.trim() !== "" && categoryForm.value !== "null" && inputImage.files.length > 0) {
       fieldsCompleted = true;
     }      
     validateButton.style.backgroundColor = fieldsCompleted ? "#1D6154" : ""; 
   });
 });
+
 
 validateButton.addEventListener("click", function(event) {
   event.preventDefault(); 
